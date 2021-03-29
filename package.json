@@ -1,5 +1,8 @@
 {
     "private": true,
+    "engines": {
+        "node": "14.x"
+    },
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
@@ -8,10 +11,7 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "postinstall": "npm run prod"
-    },
-    "engines": {
-        "node": "14.x"
+        "heroku-postbuild": "npm run production"
     },
     "devDependencies": {
         "axios": "^0.21",
