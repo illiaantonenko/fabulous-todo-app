@@ -44,6 +44,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
+            "composer update --dev",
             "php artisan clear-compiled",
             "php artisan migrate --seed"
         ]
