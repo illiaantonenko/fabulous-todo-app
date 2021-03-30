@@ -7,6 +7,7 @@
     "clean": "rm dist/bundle.js",
     "build:dev": "webpack -d --mode development",
     "build:prod": "webpack -p --mode production",
+    "heroku-postbuild": "npm run build:prod",
     "start": "webpack-dev-server --hot --mode development",
     "serve": "node ./build/serve.js",
     "deploy": "npm run build-prod && firebase deploy",
