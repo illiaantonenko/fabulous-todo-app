@@ -1,0 +1,75 @@
+/* Sidebar styles */
+.sidebar {
+  flex: 0 0 300px;
+  min-width: 300px;
+  position: relative;
+  overflow: hidden;
+  padding: 0 30px;
+}
+
+.bg_image {
+  filter: saturate(0.5) brightness(0.5) blur(3px);
+  width: calc(100% + 50px);
+  height: calc(100% + 50px);
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
+  top: -25px;
+  left: -25px;
+  right: -25px;
+  bottom: -25px;
+}
+
+.user {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 30px;
+  position: relative;
+  height: 90px;
+}
+
+.user:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 50%;
+  height: 1px;
+  background-color: var(--ash);
+  bottom: 0;
+  left: -30px;
+}
+
+.menu_wrapper {
+  padding-left: 15px;
+}
+
+.menu {
+  list-style: none;
+}
+
+.link {
+  color: var(--ash_2);
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+  transition: color 350ms;
+}
+
+.link:hover, .link.active {
+  color: var(--white_2);
+}
+
+.link:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.name {
+  
+}
+
+.contact {
+  padding-left: 30px;
+}

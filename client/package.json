@@ -1,0 +1,77 @@
+{
+  "name": "redux_boilerplate",
+  "version": "1.0.0",
+  "description": "Stack: Webpack, React, Redux, Redux-saga.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "build-dev": "webpack -d --mode development",
+    "build-prod": "webpack -p --mode production",
+    "start": "webpack-dev-server --hot --mode development",
+    "deploy": "npm run build-prod && firebase deploy",
+    "lint": "eslint --format=stylish --ext=.ts --ext=.tsx --quiet=true --config=.eslintrc.js src",
+    "lint:fix": "eslint --fix --format=stylish --ext=.ts --ext=.tsx --quiet=true --config=.eslintrc.js src"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.5.5",
+    "jwt-decode": "^2.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.12.9",
+    "react-redux": "^7.1.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4",
+    "redux-saga": "^1.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@types/jwt-decode": "^2.2.1",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "^7.1.2",
+    "@types/react-router-dom": "^4.3.5",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^1.0.1",
+    "dotenv-webpack": "^1.7.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "typings-for-css-modules-loader": "^1.7.0",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SilverTracer/redux_boilerplate.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "redux-saga",
+    "webpack",
+    "css-modules",
+    "boilerplate"
+  ],
+  "author": "R.Ruhalov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SilverTracer/redux_boilerplate/issues"
+  },
+  "homepage": "https://github.com/SilverTracer/redux_boilerplate#readme"
+}

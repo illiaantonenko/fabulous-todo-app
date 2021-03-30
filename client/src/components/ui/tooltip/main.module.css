@@ -1,0 +1,51 @@
+.wrapper {
+  position: absolute;
+  width: 240px;
+  display: none;
+  z-index: 10;
+}
+
+.shown {
+  display: block;
+}
+
+.left {
+  right: 100%;
+}
+
+.right {
+  left: 100%;
+}
+
+.top {
+  bottom: 100%;
+  left: calc(50% - 120px);
+}
+
+.bottom {
+  top: 100%;
+  left: calc(50% - 120px);
+}
+
+/* Blocks */
+
+.arrow {
+  display: block;
+  margin: auto;
+  width: 3px;
+  height: 3px;
+  top: -3px;
+  left: calc(50% - 1.5px);
+  border-bottom: 3px solid rgba(0,0,0,0.7);
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+}
+
+.content {
+  display: inline-block;
+  background: rgba(0,0,0,0.7);
+  color: var(--white_2);
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 3px;
+}

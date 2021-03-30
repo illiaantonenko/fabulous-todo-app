@@ -1,0 +1,16 @@
+# Ignoring modules. Consumer can later call npm i to upload them.
+node_modules/
+
+# Ignoring build
+# dist/
+dist/bundle.js
+
+# Ignoring cache
+.firebase/
+
+# Ignoring enviroment variables files
+.env
+.env.local
+
+*.d.ts
+package-lock.json

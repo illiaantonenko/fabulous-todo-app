@@ -1,0 +1,11 @@
+export { default as Feather } from './feather';
+export { default as Plus } from './plus';
+export { default as PlusCircle } from './plus-circle';
+export { default as Search } from './search';
+export { default as BarChart } from './bar-chart';
+export { default as EditSquare } from './edit';
+export { default as Edit } from './edit-2';
+export { default as Cross } from './x';
+export { default as Delete } from './delete';
+export { default as Trash } from './trash';
+export { default as TrashTwo } from './trash-2';

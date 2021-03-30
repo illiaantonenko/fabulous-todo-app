@@ -1,0 +1,56 @@
+.field_wrapper {
+  margin-bottom: 30px;
+}
+
+.input_block {
+  /* position: relative; */
+}
+
+/* .input_block:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  background-color: var(--white);
+  transition: transform 750ms;
+  transform: scaleX(0);
+} */
+
+/* .input_block.focus:before {
+  transform: scaleX(1);
+} */
+
+.input {
+  font-size: 12px;
+  width: 100%;
+  padding: 10px 0;
+  color: var(--black_2);
+  border-bottom: 1px solid var(--sky);
+  transition: border-color 350ms;
+}
+
+.focus .input {
+  border-bottom-color: var(--white);
+}
+
+/* Label styles */
+.label {
+  display: inline-block;
+  transition: transform 350ms;
+  transform: translateY(25px) scale(1);
+  z-index: 1;
+  transform-origin: left center;
+}
+
+.focus .label {
+  transform: translateY(0) scale(0.9);
+}
+
+.label {
+  font-weight: 300;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--black_2);
+}
