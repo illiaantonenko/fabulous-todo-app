@@ -1,5 +1,5 @@
 {
-  "name": "redux_boilerplate",
+  "name": "fabulous-todo-app-client",
   "version": "1.0.0",
   "description": "Stack: Webpack, React, Redux, Redux-saga.",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "clean": "rm dist/bundle.js",
     "build:dev": "webpack -d --mode development",
     "build:prod": "webpack -p --mode production",
-    "heroku-postbuild": "npm run build:prod",
+    "heroku-postbuild": "npm run build:prod || npm run build:prod",
     "start": "webpack-dev-server --hot --mode development",
     "serve": "node ./build/serve.js",
     "deploy": "npm run build-prod && firebase deploy",
