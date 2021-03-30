@@ -1,6 +1,6 @@
 {
   "name": "fabulous-todo-app-client",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Stack: Webpack, React, Redux, Redux-saga.",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "build:prod": "webpack -p --mode production",
     "heroku-postbuild": "npm run build:prod || npm run build:prod",
     "start": "webpack-dev-server --hot --mode development",
-    "serve": "node ./build/serve.js",
+    "serve": "node dist/serve.js",
     "deploy": "npm run build-prod && firebase deploy",
     "lint": "eslint --format=stylish --ext=.ts --ext=.tsx --quiet=true --config=.eslintrc.js src",
     "lint:fix": "eslint --fix --format=stylish --ext=.ts --ext=.tsx --quiet=true --config=.eslintrc.js src"
