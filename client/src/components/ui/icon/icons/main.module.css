@@ -1,0 +1,45 @@
+.ash {
+  stroke: var(--ash)
+}
+.ash_1 {
+  stroke: var(--ash_1)
+}
+.ash_2 {
+  stroke: var(--ash_2)
+}
+.black {
+  stroke: var(--black)
+}
+.black_1 {
+  stroke: var(--black_1)
+}
+.black_2 {
+  stroke: var(--black_2)
+}
+.white {
+  stroke: var(--white)
+}
+.white_1 {
+  stroke: var(--white_1)
+}
+.white_2 {
+  stroke: var(--white_2)
+}
+.cream {
+  stroke: var(--cream)
+}
+.cream_1 {
+  stroke: var(--cream_2)
+}
+.cream_2 {
+  stroke: var(--cream_2)
+}
+.sky {
+  stroke: var(--sky)
+}
+.sky_1 {
+  stroke: var(--sky_1)
+}
+.sky_2 {
+  stroke: var(--sky_2)
+}

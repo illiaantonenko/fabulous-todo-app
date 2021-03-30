@@ -1,0 +1,49 @@
+.overlay {
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  overflow: auto;
+
+  flex-direction: column;
+}
+
+.form {
+  width: 100%;
+  max-width: 500px;
+}
+
+.control_block {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.or_text {
+  margin: 0 15px
+}
+
+.popover_title {
+  text-transform: uppercase;
+  margin-bottom: 60px;
+}
+
+.complete_button {
+  cursor: pointer;
+  transition: opacity 350ms;
+}
+
+.complete_button:hover, .complete_button:focus {
+  opacity: 0.7;
+}
+
+.edit_icon {
+  width: 18px;
+}

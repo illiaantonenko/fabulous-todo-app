@@ -1,0 +1,173 @@
+.button {
+  text-transform: uppercase;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.button:after {
+  z-index: -1;
+  content: '';
+  display: block;
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  transition: opacity 350ms;
+}
+
+.button:hover:after {
+  opacity: 0.6;
+}
+
+/* Colors */
+
+.sky:after {
+  background: linear-gradient(45deg, var(--sky), var(--sky_2));
+}
+.sky_2:after {
+  background: linear-gradient(45deg, var(--sky_2), var(--white));
+}
+.ash:after {
+  background: linear-gradient(45deg, var(--ash), var(--ash_2));
+}
+
+.black {
+  color: var(--black);
+}
+.black:after {
+  background: linear-gradient(45deg, var(--black), var(--black_1));
+}
+.black_1 {
+  color: var(--black_1);
+}
+.black_1:after {
+  background: linear-gradient(45deg, var(--black_1), var(--black_2));
+}
+.black_2 {
+  color: var(--black_2);
+}
+.black_2:after {
+  background: linear-gradient(45deg, var(--black_2), var(--sky));
+}
+
+.white {
+  color: var(--white);
+}
+.white:after {
+  background: linear-gradient(45deg, var(--ash), var(--white));
+}
+.white_1 {
+  color: var(--white_1);
+}
+.white_1:after {
+  background: linear-gradient(45deg, var(--white), var(--white_1));
+}
+.white_2 {
+  color: var(--white_2);
+}
+.white_2:after {
+  background: linear-gradient(45deg, var(--white_1), var(--white_2));
+}
+
+.sky {
+  color: var(--sky);
+}
+.sky:after {
+  background: linear-gradient(45deg, var(--sky), var(--sky_1));
+}
+.sky_1 {
+  color: var(--sky_1);
+}
+.sky_1:after {
+  background: linear-gradient(45deg, var(--sky_1), var(--sky_2));
+}
+.sky_2 {
+  color: var(--sky_2);
+}
+.sky_2:after {
+  background: linear-gradient(45deg, var(--sky_2), var(--ash));
+}
+
+.ash {
+  color: var(--ash);
+}
+.ash:after {
+  background: linear-gradient(45deg, var(--ash), var(--ash_1));
+}
+.ash_1 {
+  color: var(--ash_1);
+}
+.ash_1:after {
+  background: linear-gradient(45deg, var(--ash_1), var(--ash_2));
+}
+.ash_2 {
+  color: var(--ash_2);
+}
+.ash_2:after {
+  background: linear-gradient(45deg, var(--ash_2), var(--white));
+  
+}
+.cream {
+  color: var(--cream);
+}
+.cream:after {
+  background: linear-gradient(45deg, var(--cream), var(--cream_1));
+}
+.cream_1 {
+  color: var(--cream_1);
+}
+.cream_1:after {
+  background: linear-gradient(45deg, var(--cream_1), var(--cream_2));
+}
+.cream_2 {
+  color: var(--cream_2);
+}
+.cream_2:after {
+  background: linear-gradient(45deg, var(--cream_2), var(--white));
+}
+
+/* Fills */
+
+.bordered {
+  background-color: #fff;
+}
+
+.solid {
+  background-color: transparent;
+  color: var(--white_2);
+}
+
+.blank {
+  background: #fff;
+}
+.blank:after {
+  display: none;
+}
+.blank.big {
+  padding: 15px;
+}
+.blank.medium {
+  padding: 10px;
+}
+.blank.small {
+  padding: 7px 2px;
+}
+
+/* Sizes */
+
+.big {
+  padding: 15px 35px;
+  font-size: 14px;
+}
+
+.medium {
+  padding: 10px 25px;
+  font-size: 12px;
+}
+
+.small {
+  padding: 7px 12px;
+  font-size: 10px;
+}

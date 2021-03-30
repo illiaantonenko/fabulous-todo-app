@@ -1,0 +1,32 @@
+/* Task item styles */
+.wrapper {
+  display: flex;
+  margin-bottom: 45px;
+  padding-bottom: 15px;
+}
+
+.wrapper:not(:last-child) {
+  border-bottom: 1px solid var(--white_2);
+}
+
+.text {
+  flex: 1 1 auto;
+}
+
+.controls {
+  flex: 0 0 auto;
+}
+
+.title {
+  margin-bottom: 5px;
+}
+
+.description {}
+
+.or_text {
+  margin: 0 10px;
+}
+
+.complete {
+  padding: 0 10px 0 0;
+}

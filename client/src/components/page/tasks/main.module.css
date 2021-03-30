@@ -1,0 +1,53 @@
+.layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.body {
+  flex: 1 1 auto;
+  position: relative;
+  overflow: auto;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.control_item {
+  position: relative;
+  height: 100%;
+  background: transparent;
+  border-left: 1px solid var(--white_2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+  cursor: pointer;
+}
+
+.control_item:hover, .control_item:focus {
+}
+
+.page_title {
+  padding: 30px 60px;
+  margin-bottom: 30px;
+}
+
+.tasks_wrapper {
+  padding: 0 30px;
+}
+
+.content_wrapper {
+  max-width: 800px;
+  margin: auto;
+}

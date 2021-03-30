@@ -1,0 +1,35 @@
+.overlay {
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  overflow: auto;
+
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.controls {
+  margin-top: 60px;
+}
+
+.or_text {
+  margin: 0 15px;
+}

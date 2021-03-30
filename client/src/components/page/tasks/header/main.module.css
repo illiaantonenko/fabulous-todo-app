@@ -1,0 +1,20 @@
+
+.header {
+  height: 90px;
+  border-bottom: 1px solid var(--ash_2);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.logo_text {
+  font-size: 24px;
+}
