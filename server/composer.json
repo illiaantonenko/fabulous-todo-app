@@ -58,6 +58,7 @@
             "php artisan clear-compiled",
             "php artisan optimize",
             "chmod -R 777 storage",
+            "php artisan vendor:publish --tag=lighthouse-schema",
             "php artisan passport:keys",
             "php artisan migrate:fresh --seed"
         ]
