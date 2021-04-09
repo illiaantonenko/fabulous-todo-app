@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Carbon\Carbon;
 use Http;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -25,19 +25,14 @@ class AuthController extends Controller
                 'message' => 'Unauthorized'
             ], 401);
 
-        $response = Http::asForm()->post(config('services.passport.login_endpoint'), [
-            'grant_type' => 'password',
-            'client_id' => config('services.passport.client_id'),
-            'client_secret' => config('services.passport.client_secret'),
-            'username' => $request->email,
-            'password' => $request->password
-        ]);
-        return $response->json();
+        $response = $this->passportAuthorise($request->email,$request->password);
+        $response->message = 'Logged in successfully';
+        return response()->json($response);
     }
 
     public function register(Request $request)
     {
-        $validation = \Validator::make($request->all(), [
+        $validation = Validator::make($request->all(), [
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'email' => 'required|string|email|unique:users',
@@ -54,16 +49,10 @@ class AuthController extends Controller
             $user->password = bcrypt($request->password);
             if ($user->save()){
                 Auth::login($user);
-                $tokenResult = $user->createAccessToken($request->remember_me);
 
-                return response()->json([
-                    'message' => 'Successfully created user!',
-                    'access_token' => $tokenResult,
-                    'token_type' => 'Bearer',
-//                    'expires_at' => Carbon::parse(
-//                        $tokenResult->token->expires_at
-//                    )->toDateTimeString()
-                ], 201);
+                $response = $this->passportAuthorise($request->email,$request->password);
+                $response->message = 'Successfully created user';
+                return response()->json($response);
             }
             return response()->json([
                 'message' => 'User not created'
@@ -73,8 +62,26 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
+        $request->user()->tokens()->each(function($token, $key){
+          $token->delete();
+        });
         return response()->json([
             'message' => 'Successfully logged out']);
+    }
+
+    /**
+     * @param $email
+     * @param $password
+     * @return object
+     */
+    private function passportAuthorise($email, $password)
+    {
+        return Http::asForm()->post(config('services.passport.login_endpoint'), [
+            'grant_type' => 'password',
+            'client_id' => config('services.passport.client_id'),
+            'client_secret' => config('services.passport.client_secret'),
+            'username' => $email,
+            'password' => $password
+        ])->object();
     }
 }

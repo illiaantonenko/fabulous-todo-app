@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,15 +42,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function createAccessToken($remember_me = false)
-    {
-
-        $tokenResult = $this->createToken('Personal Access Token');
-        $token = $tokenResult->token;
-        if ($remember_me)
-            $token->expires_at = Carbon::now()->addWeeks(1);
-        $token->save();
-
-        return $tokenResult;
-    }
 }
