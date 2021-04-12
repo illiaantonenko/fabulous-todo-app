@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,16 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->json($request->user());
-});
+Route::prefix('auth')->name('auth.')->group(function () {
 
-Route::name('auth.')->group(function () {
-
-    Route::post('register', [AuthController::class,'register'])->name('register');
-    Route::post('login', [AuthController::class,'login'])->name('login');
+    Route::post('register', [AuthController::class, 'register'])->name('register');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
 
     Route::middleware('auth:api')->group(function () {
-        Route::get('logout', [AuthController::class,'logout']);
+        Route::get('logout', [AuthController::class, 'logout']);
     });
+
+    Route::get('{provider}/redirect', [AuthController::class, 'socialRedirect'])->where('provider', AuthController::getSocialProviderList());
+    Route::get('{provider}/callback', [AuthController::class, 'socialCallback'])->where('provider', AuthController::getSocialProviderList());
+
+});
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->json($request->user());
 });

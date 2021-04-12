@@ -15,3 +15,4 @@ npm-debug.log
 yarn-error.log
 .sudo_as_admin_successful
 .bash_aliases
+composer.lock

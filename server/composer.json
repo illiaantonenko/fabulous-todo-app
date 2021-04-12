@@ -12,6 +12,7 @@
         "laravel/framework": "^8.12",
         "laravel/homestead": "^12.1",
         "laravel/passport": "^10.1",
+        "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
         "mll-lab/laravel-graphql-playground": "^2.5",
         "nuwave/lighthouse": "^5.3"
@@ -58,9 +59,7 @@
             "php artisan clear-compiled",
             "php artisan optimize",
             "chmod -R 755 ./storage",
-            "chmod -R 755 ./public",
-            "php artisan passport:keys",
-            "php artisan migrate:fresh --seed"
+            "chmod -R 755 ./public"
         ]
     },
     "extra": {
