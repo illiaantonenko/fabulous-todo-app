@@ -12,13 +12,15 @@ use Validator;
 
 class AuthController extends Controller
 {
+    static $socialProviders = [
+        'google'
+    ];
+
     /*==================== STATIC METHODS ====================*/
 
     public static function getSocialProviderList()
     {
-        return implode('|', [
-            'google'
-        ]);
+        return implode('|', static::$socialProviders);
     }
 
     /*==================== STATIC METHODS ====================*/
@@ -82,19 +84,40 @@ class AuthController extends Controller
 
     public function socialRedirect($provider)
     {
-        switch ($provider) {
-            case 'google':
-                return response()->json(['link' => Socialite::driver('google')->stateless()->redirect()->getTargetUrl()]);
-            default:
-                abort(404);
+        if (in_array($provider, static::$socialProviders)){
+            return response()->json(['link' => Socialite::driver($provider)->redirect()->getTargetUrl()]);
         }
+        abort(404);
+    }
+
+    public function socialRedirectWeb($provider)
+    {
+        if (in_array($provider, static::$socialProviders)){
+            return view('test', ['provider' => $provider, 'link' => Socialite::driver($provider)->stateless()->redirect()->getTargetUrl()]);
+        }
+        abort(404);
     }
 
     public function socialCallback($provider)
     {
         $user = Socialite::driver($provider)->stateless()->user();
+
+        $existingUser = User::where('email', $user->email)->first();
+        if ($existingUser){
+            auth()->login($existingUser, true);
+        } else {
+            $newUser = new User;
+            $newUser->first_name = $user->user['given_name'];
+            $newUser->last_name = $user->user['family_name'];
+            $newUser->email = $user->email;
+            $newUser->google_id = $user->id;
+            $newUser->profile_photo = $user->avatar_original;
+            $newUser->save();
+            auth()->login($newUser, true);
+        }
+//        return redirect()->to('/home');
         return response()->json([
-            'user' => $user
+            'user' => $newUser ?? $existingUser
         ]);
     }
 

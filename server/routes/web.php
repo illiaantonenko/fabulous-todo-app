@@ -18,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return response()->json(User::all());
 });
+
+Route::prefix('auth')->name('auth.')->group(function () {
+    //For test purposes
+    Route::get('{provider}/redirect', [AuthController::class, 'socialRedirectWeb'])->where('provider', AuthController::getSocialProviderList());
+});
