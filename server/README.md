@@ -22,9 +22,10 @@ Change mysql to false and postgresql to true
 ```bash
 vagrant up
 ```
-### Connect to your VM via SSH
+### Connect to your VM via SSH and go to project files
 ```bash
 vagrant ssh
+cd code
 ```
 ### Create app key
 ```bash
@@ -33,6 +34,10 @@ php artisan key:generate
 ### Create passport keys
 ```bash
 php artisan passport:keys
+```
+### Give permissions to public directories
+```bash
+chmod -R 777 storage/ public/
 ```
 ### Apply migrations and run seeder
 ```bash
