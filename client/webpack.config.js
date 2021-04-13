@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack');
 const config = {
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist/assets'),
     filename: 'bundle.js',
   },
   module: {
@@ -55,7 +55,9 @@ const config = {
     ],
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: path.join(__dirname, 'dist'),
+    index: path.join(__dirname, 'dist/index.html'),
+    publicPath: '/assets/',
     port: 3000,
     historyApiFallback: {
       index: 'index.html',

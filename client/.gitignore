@@ -3,7 +3,7 @@ node_modules/
 
 # Ignoring build
 # dist/
-dist/bundle.js
+dist/assets/bundle.js
 
 # Ignoring cache
 .firebase/

@@ -13,7 +13,7 @@ interface IProps {
 
 const Sidebar : React.FC<IProps> = (props: IProps) => (
   <div className={css.sidebar}>
-    <img className={css.bg_image} src={`${process.env.ASSETS_URL}images/auth.jpeg`} alt="Sidebar image" />
+    <img className={css.bg_image} src={`${process.env.ASSETS_URL}/img/sidebar.jpeg`} alt="Sidebar image" />
     <div className={css.user}>
       <Typography tag="h3" color="white_2" weight="light">
         {props.username || 'Guest'}
