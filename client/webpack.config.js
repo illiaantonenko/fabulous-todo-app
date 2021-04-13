@@ -58,7 +58,7 @@ const config = {
     contentBase: path.join(__dirname, 'dist'),
     index: path.join(__dirname, 'dist/index.html'),
     publicPath: '/assets/',
-    port: 3000,
+    port: process.env.PORT || 3000,
     historyApiFallback: {
       index: 'index.html',
     },
