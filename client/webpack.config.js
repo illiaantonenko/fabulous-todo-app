@@ -64,7 +64,13 @@ const config = {
     },
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      path: process.env.NODE_ENV === 'production' ? './.env' : './.env.local',
+      safe: true,
+      systemvars: true,
+      allowEmptyValues: false,
+      defaults: true,
+    }),
   ],
 };
 
