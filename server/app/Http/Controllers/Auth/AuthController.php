@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use GuzzleHttp\Psr7\Response;
 use Http;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -129,13 +130,23 @@ class AuthController extends Controller
      */
     private function passportAuthorise($email, $password)
     {
-        return Http::asForm()->post(config('services.passport.login_endpoint'), [
-            'grant_type' => 'password',
-            'client_id' => config('services.passport.client_id'),
-            'client_secret' => config('services.passport.client_secret'),
-            'username' => $email,
-            'password' => $password
-        ])->object();
+        try {
+            $response = Http::asForm()->post(url(config('services.passport.login_endpoint')), [
+                'grant_type' => 'password',
+                'client_id' => config('services.passport.client_id'),
+                'client_secret' => config('services.passport.client_secret'),
+                'username' => $email,
+                'password' => $password
+            ]);
+        } catch (\Exception $exception){
+            abort($exception->getCode(), $exception->getMessage());
+        }
+        $response->onError(function ($response) {
+            /** @var Response $response */
+            abort($response->getStatusCode(), $response->getReasonPhrase());
+        });
+
+        return $response->object();
     }
     /*==================== END PRIVATE METHODS ====================*/
 }
