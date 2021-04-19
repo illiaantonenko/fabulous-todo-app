@@ -44,7 +44,7 @@ class AuthPage extends React.Component<Props, IState> {
             />
           </div>
           <div className={css.content_block}>
-            <img className={css.bg_image} src={`${process.env.ASSETS_URL}images/auth.jpeg`} alt="Flower on the pretty desc" />
+            <img className={css.bg_image} src={`${process.env.ASSETS_URL}/img/sidebar.jpeg`} alt="Flower on the pretty desc" />
             <Typography tag="h2" weight="light" color="white_2" className={css.title}>
               Organise yourself
             </Typography>
