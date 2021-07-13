@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return response()->json(User::all());
 });
+Route::get('/media/{media}', function (\App\Models\Media $media) {
+    return response()->redirectTo(\Storage::url($media->path));
+});
 
 Route::prefix('auth')->name('auth.')->group(function () {
     //For test purposes

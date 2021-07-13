@@ -4,8 +4,12 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
@@ -42,4 +46,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function saveProfilePhoto(Media $media)
+    {
+
+        $media->media_gallery()->associate($this->profile_gallery()->get()[0]);
+        $media->save();
+
+        return $media;
+    }
+
+    /*==================== RELATIONS ====================*/
+
+    public function media_galleries()
+    {
+        return $this->morphMany(MediaGallery::class, 'media_galleryable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function profile_gallery()
+    {
+        return $this->morphOne(MediaGallery::class, 'media_galleryable')
+            ->where('type', MediaGallery::$typeProfile);
+    }
+
+    /*==================== END RELATIONS ====================*/
 }

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Media;
+use App\Models\MediaGallery;
 use App\Models\User;
 use GuzzleHttp\Psr7\Response;
 use Http;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
 use Validator;
 
@@ -107,16 +111,20 @@ class AuthController extends Controller
         if ($existingUser){
             auth()->login($existingUser, true);
         } else {
-            $newUser = new User;
-            $newUser->first_name = $user->user['given_name'];
-            $newUser->last_name = $user->user['family_name'];
-            $newUser->email = $user->email;
-            $newUser->google_id = $user->id;
-            $newUser->profile_photo = $user->avatar_original;
-            $newUser->save();
+            $newUser = $this->makeUser([
+                'first_name' => $user->user['given_name'],
+                'last_name' => $user->user['family_name'],
+                'email' => $user->email,
+                'google_id' => $user->id,
+            ]);
+
+            $newUser->saveProfilePhoto(
+                Media::createFromLink($user->avatar_original)
+            );
+
             auth()->login($newUser, true);
         }
-//        return redirect()->to('/home');
+
         return response()->json([
             'user' => $newUser ?? $existingUser
         ]);
@@ -147,6 +155,18 @@ class AuthController extends Controller
         });
 
         return $response->object();
+    }
+
+    private function makeUser(array $array)
+    {
+        $user = new User($array);
+
+        $mediaGallery = new MediaGallery(['type' => MediaGallery::$typeProfile]);
+        $user->save();
+        $user->media_galleries()->save($mediaGallery);
+
+
+        return $user;
     }
     /*==================== END PRIVATE METHODS ====================*/
 }
