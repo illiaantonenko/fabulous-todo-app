@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Media;
 use App\Models\MediaGallery;
+use App\Models\Profile;
 use App\Models\User;
 use GuzzleHttp\Psr7\Response;
 use Http;
@@ -106,16 +107,16 @@ class AuthController extends Controller
     public function socialCallback($provider)
     {
         $user = Socialite::driver($provider)->stateless()->user();
-
         $existingUser = User::where('email', $user->email)->first();
         if ($existingUser){
             auth()->login($existingUser, true);
         } else {
             $newUser = $this->makeUser([
-                'first_name' => $user->user['given_name'],
-                'last_name' => $user->user['family_name'],
                 'email' => $user->email,
                 'google_id' => $user->id,
+            ],[
+                'first_name' => $user->user['given_name'],
+                'last_name' => $user->user['family_name'],
             ]);
 
             $newUser->saveProfilePhoto(
@@ -157,13 +158,19 @@ class AuthController extends Controller
         return $response->object();
     }
 
-    private function makeUser(array $array)
+    private function makeUser(array $userData, array $profileData = [])
     {
-        $user = new User($array);
-
-        $mediaGallery = new MediaGallery(['type' => MediaGallery::$typeProfile]);
+        $user = new User($userData);
         $user->save();
+        $mediaGallery = new MediaGallery(['type' => MediaGallery::$typeProfile]);
+
         $user->media_galleries()->save($mediaGallery);
+        $profile = new Profile([
+
+            'first_name' => $profileData['first_name'],
+            'last_name' => $profileData['last_name']
+        ]);
+        $user->profile()->save($profile);
 
 
         return $user;

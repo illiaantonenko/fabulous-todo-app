@@ -16,13 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return response()->json(User::all());
+    return response()->json(User::with(['profile', 'profile_media'])->get());
 });
+Route::get('/user/{slug}', [\App\Http\Controllers\UserController::class, 'show']);
+
 Route::get('/media/{media}', function (\App\Models\Media $media) {
     return response()->redirectTo(\Storage::url($media->path));
 });
 
 Route::prefix('auth')->name('auth.')->group(function () {
-    //For test purposes
+    //TODO: For test purposes. Remove on frontend sync
     Route::get('{provider}/redirect', [AuthController::class, 'socialRedirectWeb'])->where('provider', AuthController::getSocialProviderList());
 });
